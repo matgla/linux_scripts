@@ -7,6 +7,7 @@ import std.regex;
 import std.stdio;
 import std.string;
 import std.conv;
+import std.process;
 
 class BatteryInfo {
 	
@@ -34,7 +35,7 @@ public:
 
 	bool hasBattery_;
 	Status status_;
-
+	
 	void parse() {
 		auto splittedBattery = acpiString_.split(",");
 		hasBattery_ = hasBattery(splittedBattery[0]);
@@ -59,10 +60,7 @@ public:
 						status_ = Status.Charging;
 						break;
 				}
-				writeln(status_);
 			}
-			auto batteryPercent = getPercent().strip("%").strip().to!(int);			
-			writeln("percent: ", batteryPercent);
 		}
 	}
 
@@ -85,10 +83,6 @@ public:
 		}
 		
 	}
-
-	// string getBatteryStatusText(Status)(Status status : Status.Discharging) {
-	// 	return "<span color='green'><span font='Icons'>\uf221</span></span>";
-	// }
 
 	string getPercent() {
 		auto percentRegex = regex(r"(?:[0-9])?[0-9]?[0-9]%");
@@ -120,15 +114,15 @@ private:
 };
 
 void main() {
-	auto b = new BatteryInfo("Battery 0: Discharging, 61%, 01:10:12 remaining");
-	b.parse();
-	writeln(b.getBatteryText());
-	b.acpiString("Battery 0: Charging, 61%, 01:10:12 remaining");
-	b.parse();
-	writeln(b.getBatteryText());
-	b.acpiString("Battery 0: Full, 61%, 01:10:12 remaining");
-	b.parse();
-	writeln(b.getBatteryText());
+	auto acpi = execute(["acpi"]);
+	auto batteryInfo = new BatteryInfo("");
+
+	if (acpi.status != 0) {
+		batteryInfo.acpiString(acpi.output);
+	}  
+
+	batteryInfo.parse();
+	writeln(batteryInfo.getBatteryText());
 }
 
 unittest /* getPercentTests */ {

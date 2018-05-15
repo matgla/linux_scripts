@@ -1,3 +1,4 @@
-*.dub\*
-*.vscode\*
+*.dub*
+*.vscode*
 *.exe
+__pycache__
