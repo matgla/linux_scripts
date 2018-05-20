@@ -72,7 +72,7 @@ class BatteryInfo
 
 	public string getBatteryText() 
 	{
-		return getBatteryStatusText() ~ getBatteryIcon() ~ getPercentText();
+		return getBatteryStatusText() ~ getBatteryIcon() ~ " " ~ getPercentText();
 	}
 
 	private enum Status {
