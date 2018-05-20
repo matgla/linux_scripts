@@ -16,6 +16,7 @@ immutable BATTERY_LOW_TEXT = "<span color='red'><span font='Icons'>\uf212</span>
 immutable BATTERY_MEDIUM_TEXT = "<span color='green'><span font='Icons'>\uf215</span></span>";
 immutable BATTERY_HIGH_TEXT = "<span color='green'><span font='Icons'>\uf214</span></span>";
 immutable BATTERY_FULL_TEXT = "<span color='green'><span font='Icons'>\uf213</span></span>";
+immutable CANT_READ_BATTERY_TEXT = "<span color='red'><span font='DejaVu Sans Mono'>! No ACPI</span></span>";
 
 immutable int BATTERY_LOW_TRESHOLD = 15;
 immutable int BATTERY_MEDIUM_TRESHOLD = 50;
@@ -155,15 +156,24 @@ class BatteryInfo
 };
 
 void main() {
-	// auto acpi = execute(["acpi"]);
-	// auto batteryInfo = new BatteryInfo("");
+	try 
+	{
+		auto acpi = execute(["acpi"]);
+		auto batteryInfo = new BatteryInfo();
 
-	// if (acpi.status == 0) {
-	// 	batteryInfo.acpiString(acpi.output);
-	// }  
+		if (acpi.status == 0) {
+			batteryInfo.parse(acpi.output);
+			writeln(batteryInfo.getBatteryText());
+			return;
+		}  
 
-	// batteryInfo.parse();
-	// writeln(batteryInfo.getBatteryText());
+		writeln(CANT_READ_BATTERY_TEXT);
+
+	} 
+	catch(ProcessException)
+	{
+		writeln(CANT_READ_BATTERY_TEXT);
+	}
 }
 
 unittest /* no battery */ {
