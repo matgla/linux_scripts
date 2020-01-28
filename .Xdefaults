@@ -1,0 +1,32 @@
+urxvt*font:             xft:DroidSansMono Nerd Font Mono:size=11,xft:DroidSansMono Nerd Font:size=11,xft:Cousine for Powerline:size=11,xft:Material Icons:style=Regular,xft:3270Medium Nerd Font Mono,xft:FontAwesome,xft:DejaVu Sans:size=11
+urxvt*termName:         rxvt
+urxvt*foreground:       #cccccc
+urxvt*scrollBar:        false
+urxvt*perl-lib:         /usr/lib/urxvt/perl/
+urxvt*perl-ext-common:  default,matcher
+urxvt*urlLauncher:      /usr/bin/jumanji
+urxvt*matcher.button:   1
+
+Xft*dpi:                96
+Xft*antialias:          true
+Xft*hinting:            full
+
+urxvt*depth:            32
+urxvt*background:       rgba:0000/0000/0200/8800
+
+URxvt*color0:      #000000
+URxvt*color1:      #de1111
+URxvt*color2:      #80bf60
+URxvt*color3:      #968a38
+URxvt*color4:      #20a0ff
+URxvt*color5:      #e936e9
+URxvt*color6:      #418179
+URxvt*color7:      #bebebe
+URxvt*color8:      #555555
+URxvt*color9:      #de2137
+URxvt*color10:     #aece92
+URxvt*color11:     #968a38
+URxvt*color12:     #2080ff
+URxvt*color13:     #e936e9
+URxvt*color14:     #418179
+URxvt*color15:     #aaaaaa
