@@ -1,4 +1,4 @@
-urxvt*font:             xft:DroidSansMono Nerd Font Mono:size=11,xft:DroidSansMono Nerd Font:size=11,xft:Cousine for Powerline:size=11,xft:Material Icons:style=Regular,xft:3270Medium Nerd Font Mono,xft:FontAwesome,xft:DejaVu Sans:size=11
+urxvt*font:             xft:DroidSansMono\ Nerd\ Font\ Mono:size=11,xft:DroidSansMono\ Nerd\ Font:size=11,xft:Cousine\ for\ Powerline:size=11,xft:Material\ Icons:style=Regular,xft:3270Medium\ Nerd\ Font\ Mono,xft:FontAwesome,xft:DejaVu\ Sans:size=11
 urxvt*termName:         rxvt
 urxvt*foreground:       #cccccc
 urxvt*scrollBar:        false

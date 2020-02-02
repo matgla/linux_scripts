@@ -197,11 +197,7 @@ smart_borders on
 
 exec --no-startup-id compton --config=$HOME/.config/i3/compton.conf -bf -D 2
 exec --no-startup-id mpd $HOME/.config/mpd/mpd.conf
-exec --no-startup-id firefox
-exec --no-startup-id code 
 exec --no-startup-id urxvt
 #exec --no-startup-id killall cmus
 #exec --no-startup-id urxvt -e cmus
-exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/urxvt -e vim'
 exec --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id urxvt -e ncmpcpp
