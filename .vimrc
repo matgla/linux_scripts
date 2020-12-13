@@ -32,6 +32,12 @@ set number
 set relativenumber 
 set showmatch 
 set comments=sl:/*,mb:\ *,elx:\ */
+" highlight 
+
+colorscheme gruvbox 
+set background=dark
+highlight Pmenu ctermbg=none ctermfg=white 
+highlight Normal ctermbg=none
 
 " Key mapping
 nmap <F2> :w<CR>
@@ -128,6 +134,7 @@ Plugin 'easymotion/vim-easymotion'
 
 " Colorschemes 
 Plugin 'branwright1/salvation-vim'
+Plugin 'morhetz/gruvbox'
 
 call vundle#end()
 filetype plugin indent on 
