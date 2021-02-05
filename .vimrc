@@ -65,7 +65,7 @@ nmap <C-r-h> :res +5<CR>
 " Remove trailing whitespace 
 
 " Terminal 
-nnoremap <C-q> :FloatermNew<CR>
+nnoremap <C-q> :Bdelete<CR>
 
 "tnoremap <Esc> <C-\><C-n>
 
@@ -84,6 +84,7 @@ Plugin 'jremmen/vim-ripgrep'
 Plugin 'voldikss/vim-floaterm'
 Plugin 'preservim/nerdcommenter' 
 
+Plugin 'moll/vim-bbye'
 " C++ Code Completion
 "Plugin 'valloric/youcompleteme'
 Plugin 'neoclide/coc.nvim'
@@ -135,6 +136,9 @@ Plugin 'easymotion/vim-easymotion'
 " Colorschemes 
 Plugin 'branwright1/salvation-vim'
 Plugin 'morhetz/gruvbox'
+
+" SystemVerilog 
+Plugin 'vhda/verilog_systemverilog.vim'
 
 call vundle#end()
 filetype plugin indent on 
@@ -394,4 +398,6 @@ let g:cpp_posix_standard = 1
 let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_concepts_highlight = 1
 let g:cpp_no_function_highlight = 1
+
+let g:rg_command = 'rg --vimgrep -S'
 
