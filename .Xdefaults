@@ -1,0 +1,48 @@
+urxvt*font:             xft:DejaVu Sans Mono for Powerline:size=11,xft:Droid Sans Mono Nerd Font:size=11,xft:Material Icons:size=10,xft:Misc Termsyn.Icons:size=8:antialias=false,xft:DejaVu Sans:size=8,xft:Icons:size=8
+urxvt*termName:         rxvt
+urxvt*foreground:       #cccccc
+urxvt*scrollBar:        false
+urxvt*perl-lib:         /usr/lib/urxvt/perl/
+urxvt*perl-ext-common:  default,matcher
+urxvt*urlLauncher:      /usr/bin/jumanji
+urxvt*matcher.button:   1
+
+Xft*dpi:                96
+Xft*antialias:          true
+Xft*hinting:            full
+Xft*hintstyle:          hintfull
+
+*.depth:            32
+*.background:       rgba:0000/0000/0200/8800
+
+! black
+*.color0:      #504945
+*.color8:      #504945
+
+! red 
+*.color1:      #ea5252
+*.color9:      #ea5252
+
+! green 
+*.color2:      #acb765
+*.color10:     #acb765
+
+! yellow 
+*.color3:      #c1bf89
+*.color11:     #b1bf89
+
+! blue
+*.color4:      #82abbc
+*.color12:     #82abbc
+
+! magneta 
+*.color5:      #b18a97
+*.color13:     #b18a97
+
+! cyan
+*.color6:      #88b482
+*.color14:     #88b482
+
+! white
+*.color7:      #bfddb2
+*.color15:     #bfddb2

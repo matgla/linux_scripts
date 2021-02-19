@@ -117,9 +117,6 @@ Plugin 'ryanoasis/vim-devicons'
 
 " Colorscheme
 
-" Python
-Plugin 'klen/python-mode'
-
 " Markdown
 Plugin 'shime/vim-livedown'
 
@@ -137,11 +134,15 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'branwright1/salvation-vim'
 Plugin 'morhetz/gruvbox'
 
+" KConfig syntax 
+Plugin 'valir/vim-kconfig'
+
 " SystemVerilog 
 Plugin 'vhda/verilog_systemverilog.vim'
 
 call vundle#end()
 filetype plugin indent on 
+
 
 " Floaterm 
 nnoremap   <silent>   <F12>   :FloatermToggle<CR>
