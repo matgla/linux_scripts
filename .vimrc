@@ -27,6 +27,7 @@ set textwidth=120
 set t_Co=256
 set mouse=nicr
 syntax on 
+set ignorecase
 
 set number 
 set relativenumber 
@@ -91,26 +92,9 @@ Plugin 'neoclide/coc.nvim'
 " Hex values colorizing
 Plugin 'lilydjwg/colorizer'
 Plugin 'octol/vim-cpp-enhanced-highlight'
-" ORG mode 
-Plugin 'jceb/vim-orgmode'
-Plugin 'utl.vim'
-Plugin 'tpope/vim-repeat'
-Plugin 'taglist.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-speeddating'
-Plugin 'chrisbra/nrrwrgn'
-Plugin 'itchyny/calendar.vim'
-Plugin 'SyntaxRange'
-
-" Snippet
-Plugin 'sirver/ultisnips'
-Plugin 'honza/vim-snippets'
 
 " VIM TAB management
 Plugin 'bling/vim-airline'
-
-" VIM IDE 
-Plugin 'thaerkh/vim-workspace'
 
 " DevIcon
 Plugin 'ryanoasis/vim-devicons'
@@ -119,10 +103,6 @@ Plugin 'ryanoasis/vim-devicons'
 
 " Markdown
 Plugin 'shime/vim-livedown'
-
-" CMake 
-Plugin 'jalcine/cmake.vim'
-Plugin 'tpope/vim-dispatch'
 
 " Files management
 Plugin 'wincent/command-t'
@@ -136,9 +116,6 @@ Plugin 'morhetz/gruvbox'
 
 " KConfig syntax 
 Plugin 'valir/vim-kconfig'
-
-" SystemVerilog 
-Plugin 'vhda/verilog_systemverilog.vim'
 
 call vundle#end()
 filetype plugin indent on 
