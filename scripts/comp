@@ -1,0 +1,11 @@
+#!/bin/bash
+#Az : Enable/disable compositor
+
+SERVICE="picom"
+if pgrep -x "$SERVICE" >/dev/null
+then
+    kill $(pgrep -x "$SERVICE")
+else
+    picom --config ~/.config/picom/picom.conf &
+fi
+

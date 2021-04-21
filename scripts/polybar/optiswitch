@@ -1,0 +1,25 @@
+#!/bin/bash
+#Az : Reboot and switch from dgpu to igpu or from igpu to dpu
+
+#currentgpu=$(cat ~/scripts/ressources/currentgpu)
+currentgpu=$(optimus-manager --print-mode)
+if [[ ${currentgpu: -10} = "integrated" ]]
+then
+	#sudo optimus-manager-daemon &
+	#sleep 1
+	#sudo optimus-manager --set-startup nvidia
+    sudo sh -c 'cat /home/az/scripts/ressources/optimus-manager.conf | sed "s/startup_mode=integrated/startup_mode=nvidia/g" > /etc/optimus-manager/optimus-manager.conf'
+	#sudo mv /etc/X11/xorg.conf /etc/X11/xorg.conf.amd
+	#sudo mv /etc/X11/xorg.conf.nvidia /etc/X11/xorg.conf
+elif  [[ ${currentgpu: -6} = "nvidia" ]]
+then
+        #sudo optimus-manager-daemon &
+        #sleep 1
+	#sudo optimus-manager --set-startup amd
+    sudo sh -c 'cat /etc/optimus-manager/optimus-manager.conf > /etc/optimus-manager/optimus-manager.conf'
+	#sudo mv /etc/X11/xorg.conf /etc/X11/xorg.conf.nvidia
+	#sudo mv /etc/X11/xorg.conf.amd /etc/X11/xorg.conf
+fi
+sudo prime-switch
+sudo reboot
+

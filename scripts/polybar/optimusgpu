@@ -1,0 +1,13 @@
+#!/bin/bash
+#Az : Print the currently used gpu
+
+#currentgpu=$(cat ~/scripts/ressources/currentgpu)
+currentgpu=$(optimus-manager --print-mode)
+if [[ ${currentgpu: -10} = "integrated" ]]
+then
+	echo "%{u#F93737}%{+u} intel %{-u}"
+elif [[ ${currentgpu: -6} = "nvidia" ]]
+then
+	echo "%{u#30EB50}%{+u} ${currentgpu: -6} %{-u}"
+fi
+

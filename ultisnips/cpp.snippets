@@ -63,3 +63,17 @@ ${0}
 }
 endsnippet
 
+snippet c_header "C++ compatible C header" b 
+#pragma once
+
+#ifdef __cplusplus 
+extern "C"
+{
+#endif // __cplusplus 
+
+${0}
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
+endsnippet

@@ -53,16 +53,21 @@ set makeprg=make\ -C\ build\ -j8
 noremap <silent> <F7> :make <bar> bo copen<CR>
 
 "  -- clipboard management
-nnoremap <Leader>y "*y
-nnoremap <Leader>p "*p 
-nnoremap <Leader>Y "+y 
-nnoremap <Leader>P "+p
+
+set clipboard+=unnamedplus
+nnoremap <Leader>y "+y
+nnoremap <Leader>p "+p 
+nnoremap <Leader>Y "*y 
+nnoremap <Leader>P "*p
 "  -- Window management
 nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
 nmap <C-j> <C-w>j 
 nmap <C-k> <C-w>k
-nmap <C-r-h> :res +5<CR>
+
+set splitbelow 
+set splitright
+
 " Remove trailing whitespace 
 
 " Terminal 
@@ -79,11 +84,11 @@ Plugin 'VundleVim/Vundle.vim'
 
 " VIM file system explorer
 Plugin 'scrooloose/nerdtree'
-Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'jremmen/vim-ripgrep'
 Plugin 'voldikss/vim-floaterm'
 Plugin 'preservim/nerdcommenter' 
+Plugin 'jesseleite/vim-agriculture'
 
 Plugin 'moll/vim-bbye'
 " C++ Code Completion
@@ -128,7 +133,7 @@ tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
 " NERDtree plugin setting
 " Start nerdtree when vim starts up
 autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle %<CR>
 
 " YouCompleteMe 
 highlight YcmErrorLine guibg=#3f0000

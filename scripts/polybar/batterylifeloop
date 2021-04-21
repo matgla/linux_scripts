@@ -1,0 +1,8 @@
+#!/bin/bash
+#Az : Loop to refresh the batterylife widget
+while true
+do
+    polybar-msg hook battery-time 2
+    sleep 5
+done
+

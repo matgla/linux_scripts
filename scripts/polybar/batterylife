@@ -1,0 +1,21 @@
+#!/bin/bash
+#Az : Batterylife widget to polybar
+currentbatstate=$(cat ~/scripts/resources/batstate)
+SERVICE="batterylifeloop"
+
+if [ $currentbatstate = "hide" ]
+then
+    echo "show" > ~/scripts/resources/batstate
+    if pgrep -x "$SERVICE" >/dev/null
+    then
+        kill $(pgrep -x "$SERVICE")
+    fi
+    polybar-msg hook battery-time 1
+    
+elif [ $currentbatstate = "show" ]
+then
+    echo "hide" > ~/scripts/resources/batstate
+    ~/scripts/polybar/batterylifeloop &
+    exit
+fi
+
