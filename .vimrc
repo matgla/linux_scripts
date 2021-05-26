@@ -10,11 +10,11 @@
 
 set encoding=utf-8
 set termencoding=utf-8
- 
+
 " VIM settings 
 set nocompatible
 filetype off
-set nobackup 
+
 " Code formatting 
 set autoindent 
 set smartindent 
@@ -27,6 +27,7 @@ set textwidth=120
 set t_Co=256
 set mouse=nicr
 syntax on 
+set ignorecase
 
 set number 
 set relativenumber 
@@ -52,23 +53,27 @@ set makeprg=make\ -C\ build\ -j8
 noremap <silent> <F7> :make <bar> bo copen<CR>
 
 "  -- clipboard management
+
+set clipboard+=unnamedplus
 nnoremap <Leader>y "+y
 nnoremap <Leader>p "+p 
 nnoremap <Leader>Y "*y 
 nnoremap <Leader>P "*p
-set clipboard+=unnamedplus
 "  -- Window management
 nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
 nmap <C-j> <C-w>j 
 nmap <C-k> <C-w>k
-nmap <C-r-h> :res +5<CR>
+
+set splitbelow 
+set splitright
+
 " Remove trailing whitespace 
 
 " Terminal 
 nnoremap <C-q> :Bdelete<CR>
 
-tnoremap <Esc> <C-\><C-n>
+"tnoremap <Esc> <C-\><C-n>
 
 " VUNDLE 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -77,31 +82,36 @@ call vundle#begin()
 " Vundle plugins manager
 Plugin 'VundleVim/Vundle.vim'
 
-" " VIM file system explorer
+" VIM file system explorer
 Plugin 'scrooloose/nerdtree'
-Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'jremmen/vim-ripgrep'
 Plugin 'voldikss/vim-floaterm'
 Plugin 'preservim/nerdcommenter' 
- 
+Plugin 'jesseleite/vim-agriculture'
+
 Plugin 'moll/vim-bbye'
 " C++ Code Completion
+"Plugin 'valloric/youcompleteme'
 Plugin 'neoclide/coc.nvim'
 " Hex values colorizing
 Plugin 'lilydjwg/colorizer'
 Plugin 'octol/vim-cpp-enhanced-highlight'
-" VIM TAB management
+
+" VIMTAB management
 Plugin 'bling/vim-airline'
- 
+
 " DevIcon
 Plugin 'ryanoasis/vim-devicons'
 
 " Colorscheme
- 
+
 " Markdown
 Plugin 'shime/vim-livedown'
- 
+
+" Files management
+Plugin 'wincent/command-t'
+
 " Fast navigation
 Plugin 'easymotion/vim-easymotion'
 
@@ -109,16 +119,25 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'branwright1/salvation-vim'
 Plugin 'morhetz/gruvbox'
 
-" KOS syntax 
-Plugin 'matgla/kerbovim'
+" KConfig syntax 
+Plugin 'valir/vim-kconfig'
 
-" Python 
-Plugin 'numirias/semshi'
+" Hard Mode 
+
+Plugin 'takac/vim-hardtime'
+
+" EasyGrep 
+Plugin 'dkprice/vim-easygrep'
+Plugin 'tpope/vim-surround'
+
+" Vim be good 
+Plugin 'ThePrimeagen/vim-be-good'
 
 call vundle#end()
 filetype plugin indent on 
 
-
+" Enable HardMode 
+let g:hardtime_default_on = 1
 " Floaterm 
 nnoremap   <silent>   <F12>   :FloatermToggle<CR>
 tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
@@ -126,7 +145,7 @@ tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
 " NERDtree plugin setting
 " Start nerdtree when vim starts up
 autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle %<CR>
 
 " YouCompleteMe 
 highlight YcmErrorLine guibg=#3f0000
@@ -178,6 +197,10 @@ nnoremap <silent> <Leader>/ :BLines<cr>
 
 " coc.nvim configuration 
 
+" Set internal encoding of vim, not needed on neovim, since coc.nvim using some
+" unicode characters in the file autoload/float.vim
+set encoding=utf-8
+
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -197,7 +220,7 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("patch-8.1.1564")
+if has("nvim-0.5.0") || has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
   set signcolumn=number
 else
@@ -207,11 +230,12 @@ endif
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
+
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? "\<Down>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -293,6 +317,16 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
 nmap <silent> <C-s> <Plug>(coc-range-select)
@@ -314,11 +348,11 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <localleader>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <localleader>e  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
-" nnoremap <silent><nowait> <localleader>c  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
 nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
@@ -348,22 +382,12 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Use <leader>x for convert visual selected code to snippet
 xmap <leader>x  <Plug>(coc-convert-snippet)
 
-inoremap <silent><expr> <TAB>
+inoremap <silent><expr> <c-space>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ <SID>check_back_space() ? "\<c-space>" :
       \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
-
-" Keybindings 
-
-let maplocalleader = "\<space>"
+let g:coc_snippet_next = '<c-space>'
 
 " C++ coloring 
 
@@ -377,3 +401,4 @@ let g:cpp_no_function_highlight = 1
 
 let g:rg_command = 'rg --vimgrep -S'
 
+ 
