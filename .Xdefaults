@@ -1,4 +1,4 @@
-urxvt*font:             xft:DejaVu Sans Mono for Powerline:size=11,xft:Droid Sans Mono Nerd Font:size=11,xft:Material Icons:size=10,xft:Misc Termsyn.Icons:size=8:antialias=false,xft:DejaVu Sans:size=8,xft:Icons:size=8
+urxvt*font:             xft:CaskaydiaCove Nerd Font:size=12,xft:MesloLGS NF:size=14,xft:Droid Sans Mono Nerd Font:size=12,xft:Material Icons:size=12,xft:Misc Termsyn.Icons:size=12:antialias=false,xft:DejaVu Sans:size=12,xft:Icons:size=12
 urxvt*termName:         rxvt
 urxvt*foreground:       #cccccc
 urxvt*scrollBar:        false
@@ -7,7 +7,7 @@ urxvt*perl-ext-common:  default,matcher
 urxvt*urlLauncher:      /usr/bin/jumanji
 urxvt*matcher.button:   1
 
-Xft*dpi:                96
+Xft*dpi:                96 
 Xft*antialias:          true
 Xft*hinting:            full
 Xft*hintstyle:          hintfull
@@ -46,3 +46,4 @@ Xft*hintstyle:          hintfull
 ! white
 *.color7:      #bfddb2
 *.color15:     #bfddb2
+

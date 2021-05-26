@@ -10,11 +10,11 @@
 
 set encoding=utf-8
 set termencoding=utf-8
-
+ 
 " VIM settings 
 set nocompatible
 filetype off
-
+set nobackup 
 " Code formatting 
 set autoindent 
 set smartindent 
@@ -52,10 +52,11 @@ set makeprg=make\ -C\ build\ -j8
 noremap <silent> <F7> :make <bar> bo copen<CR>
 
 "  -- clipboard management
-nnoremap <Leader>y "*y
-nnoremap <Leader>p "*p 
-nnoremap <Leader>Y "+y 
-nnoremap <Leader>P "+p
+nnoremap <Leader>y "+y
+nnoremap <Leader>p "+p 
+nnoremap <Leader>Y "*y 
+nnoremap <Leader>P "*p
+set clipboard+=unnamedplus
 "  -- Window management
 nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
@@ -67,7 +68,7 @@ nmap <C-r-h> :res +5<CR>
 " Terminal 
 nnoremap <C-q> :Bdelete<CR>
 
-"tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
 
 " VUNDLE 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -76,57 +77,31 @@ call vundle#begin()
 " Vundle plugins manager
 Plugin 'VundleVim/Vundle.vim'
 
-" VIM file system explorer
+" " VIM file system explorer
 Plugin 'scrooloose/nerdtree'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'jremmen/vim-ripgrep'
 Plugin 'voldikss/vim-floaterm'
 Plugin 'preservim/nerdcommenter' 
-
+ 
 Plugin 'moll/vim-bbye'
 " C++ Code Completion
-"Plugin 'valloric/youcompleteme'
 Plugin 'neoclide/coc.nvim'
 " Hex values colorizing
 Plugin 'lilydjwg/colorizer'
 Plugin 'octol/vim-cpp-enhanced-highlight'
-" ORG mode 
-Plugin 'jceb/vim-orgmode'
-Plugin 'utl.vim'
-Plugin 'tpope/vim-repeat'
-Plugin 'taglist.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-speeddating'
-Plugin 'chrisbra/nrrwrgn'
-Plugin 'itchyny/calendar.vim'
-Plugin 'SyntaxRange'
-
-" Snippet
-Plugin 'sirver/ultisnips'
-Plugin 'honza/vim-snippets'
-
 " VIM TAB management
 Plugin 'bling/vim-airline'
-
-" VIM IDE 
-Plugin 'thaerkh/vim-workspace'
-
+ 
 " DevIcon
 Plugin 'ryanoasis/vim-devicons'
 
 " Colorscheme
-
+ 
 " Markdown
 Plugin 'shime/vim-livedown'
-
-" CMake 
-Plugin 'jalcine/cmake.vim'
-Plugin 'tpope/vim-dispatch'
-
-" Files management
-Plugin 'wincent/command-t'
-
+ 
 " Fast navigation
 Plugin 'easymotion/vim-easymotion'
 
@@ -134,11 +109,11 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'branwright1/salvation-vim'
 Plugin 'morhetz/gruvbox'
 
-" KConfig syntax 
-Plugin 'valir/vim-kconfig'
+" KOS syntax 
+Plugin 'matgla/kerbovim'
 
-" SystemVerilog 
-Plugin 'vhda/verilog_systemverilog.vim'
+" Python 
+Plugin 'numirias/semshi'
 
 call vundle#end()
 filetype plugin indent on 
