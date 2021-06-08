@@ -98,7 +98,7 @@ Plugin 'neoclide/coc.nvim'
 Plugin 'lilydjwg/colorizer'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
-" VIM TAB management
+" VIMTAB management
 Plugin 'bling/vim-airline'
 
 " DevIcon
@@ -128,6 +128,7 @@ Plugin 'takac/vim-hardtime'
 
 " EasyGrep 
 Plugin 'dkprice/vim-easygrep'
+Plugin 'tpope/vim-surround'
 
 " Vim be good 
 Plugin 'ThePrimeagen/vim-be-good'
@@ -232,7 +233,7 @@ endif
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<Down>" :
-      "\ <SID>check_back_space() ? "\<TAB>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<Up>" : "\<C-h>"
 
